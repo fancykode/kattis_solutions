@@ -1,6 +1,6 @@
+#include <bitset>
 #include <cstdint>
 #include <iostream>
-#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -15,15 +15,15 @@ int main() {
     students.push_back(sin);
   }
   for (uint64_t m = 1;; m++) {
-    unordered_set<uint64_t> newIDs;
+    bitset<999'999> reduced;
     bool found = true;
     for (const auto sin : students) {
       uint64_t newSIN = sin % m;
-      if (newIDs.contains(newSIN)) {
+      if (reduced[newSIN]) {
         found = false;
         break;
       }
-      newIDs.insert(newSIN);
+      reduced[newSIN] = true;
     }
     if (found) {
       cout << m << "\n";
